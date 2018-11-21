@@ -1,0 +1,7 @@
+FROM docker.io/node
+ADD . /manage
+RUN cd /manage
+WORKDIR /manage  
+ ENV HOST 0.0.0.0
+ ENV PORT 8000
+ EXPOSE 8000

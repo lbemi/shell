@@ -1,0 +1,12 @@
+FROM docker.io/node
+ADD jdk-8u171-linux-x64.tar.gz /usr/java
+RUN mkdir /manage
+RUN cd /manage
+WORKDIR /manage
+ENV JAVA_HOME=/usr/java/jdk1.8.0_171
+ENV JRE_HOME=/usr/java/jdk1.8.0_171/jre
+ENV PATH=$JAVA_HOME/bin:$PATH:/usr/local/bin:$JRE_HOME/bin:/usr/local/node/bin
+ENV CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+ENV HOST 0.0.0.0
+ENV PORT 8000
+EXPOSE 8000
