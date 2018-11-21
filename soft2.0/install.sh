@@ -40,7 +40,6 @@ if [ $confirm = "y" ];then
 
     function Set_projects()
     {
-
         if [ $(rpm -qa|grep unzip|wc -l)!="1" ];then
             yum install -y unzip
         fi
