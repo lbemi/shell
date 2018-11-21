@@ -41,16 +41,12 @@ if [ $confirm = "y" ];then
     function Set_projects()
     {
 
-        if [ $(rpm -qa|grep unzip|wc -l)!=1 ];then
+        if [ $(rpm -qa|grep unzip|wc -l)!="1" ];then
             yum install -y unzip
         fi
-        if [ -e "/www/servers/" ];then
-            rm -rf /www/servers/*
-        else
-            mkdir -p /www/servers/mzjar
-            mkdir -p /www/servers/mztopic
-            mkdir -p /www/servers/mzlog
-        fi
+        mkdir -p /www/servers/mzjar
+        mkdir -p /www/servers/mztopic
+        mkdir -p /www/servers/mzlog
         cp -R $cur_dir/projects/*  /www/servers/
         cd /www/servers/
         ls *.zip | xargs -n1 unzip -o -P infected
@@ -106,6 +102,8 @@ if [ $confirm = "y" ];then
         echo -e "\033[41;37m ------File have existed !!Are you want to overwrite ?  'y' OR 'n' ----- \033[0m \n"
         read result
         if [ $result = "y" ];then
+            dd=$(date "+%Y-%m-%d")
+            mv /www /www-$dd-bak
             Set_projects
         fi
     else
